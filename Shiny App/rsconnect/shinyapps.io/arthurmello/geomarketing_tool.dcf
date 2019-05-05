@@ -5,6 +5,6 @@ account: arthurmello
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 909251
-bundleId: 2061635
+bundleId: 2061687
 url: https://arthurmello.shinyapps.io/geomarketing_tool/
-when: 1557072140.09878
+when: 1557075006.97438
