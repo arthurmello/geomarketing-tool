@@ -46,14 +46,19 @@ function(input, output, session) {
   
   
   x = c(rep(0,nrow(INSEE@data)))
-  
+  age_var = c('0014','1529','3044','4559','6074','75P')
+  sum_boolean = 0
   # The final_score is the population according to the given input divided by the IRIS area
   final_score = reactive({
     
-    for (i in c('0014','1529','3044','4559','6074','75P')){
+    for (i in age_var){
+      sum_boolean = sum_boolean + input[[i]]
+    }
+      
+    for (i in age_var){
       # If no age range is selected, we take the whole population for a given sex as input
-      if (sum(input[[i]])==0){
-        boolean = c(1,1,1,1,1,1) 
+      if (sum_boolean==0){
+        boolean = 1 
       } else {
         boolean = input[[i]]
       }
@@ -70,7 +75,8 @@ function(input, output, session) {
   
   output$map = renderLeaflet({
     leaflet() %>%  addTiles(urlTemplate = Token_map_box) %>%
-      addPolygons(data = INSEE, color='black', fillColor = ~pal()(final_score()), label = paste(round(final_score()),"targeted people/km²"),
+      addPolygons(data = INSEE, color='black', fillColor = ~pal()(final_score()), label = paste('target market concentration:',
+                                                                                                round(final_score()),"people/km²"),
                   fillOpacity = 0.5, weight = 1,
                   highlightOptions = highlightOptions(color = "white", weight = 7,bringToFront = FALSE,fillOpacity = 0.5),
                   labelOptions = labelOptions(noHide = FALSE,direction = 'top',offset=c(0,0),textOnly = TRUE,
