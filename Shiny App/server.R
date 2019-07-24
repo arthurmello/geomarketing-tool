@@ -75,7 +75,7 @@ function(input, output, session) {
   
   output$map = renderLeaflet({
     leaflet() %>%  addTiles(urlTemplate = Token_map_box) %>%
-      addPolygons(data = INSEE, color='black', fillColor = ~pal()(final_score()), label = paste('target market concentration:',
+      addPolygons(data = INSEE, color='black', fillColor = ~pal()(final_score()), label = paste('Target market concentration:',
                                                                                                 round(final_score()),"people/km²"),
                   fillOpacity = 0.5, weight = 1,
                   highlightOptions = highlightOptions(color = "white", weight = 7,bringToFront = FALSE,fillOpacity = 0.5),
@@ -84,7 +84,7 @@ function(input, output, session) {
                                                          'box-shadow' = '0px 0px rgba(0,0,0,0.25)','font-size' = '14px',
                                                          'background-color'='rgba(255,255,255,0.7)','border-color' = 'rgba(0,0,0,0)'))) %>%
       addLegend("bottomright", pal = pal(), values = final_score(),
-                title = "Targeted people/km²",
+                title = "Target pop./km²",
                 opacity = 1
       )
 })
