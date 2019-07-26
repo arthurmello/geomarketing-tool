@@ -13,7 +13,7 @@ fluidPage(titlePanel("Find your target market in Paris:"),
           sidebarLayout(
             sidebarPanel(width = 3,
                          h4('Gender'),
-                         checkboxInput('H', 'Men', value = FALSE),
+                         checkboxInput('H', 'Men', value = TRUE),
                          checkboxInput('F', 'Women', value = FALSE),
                          
                          h4('Age'),
